@@ -18,7 +18,8 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="1.0.0"
+readonly VERSION="2.0.0"
+readonly OPENSSL_CIPHER="aes-256-cbc"
 
 cryptr_version() {
   echo "cryptr $VERSION"
@@ -44,21 +45,21 @@ EOF
 cryptr_encrypt() {
   local _file="$1"
   if [[ ! -f "$_file" ]]; then
-    echo "File not found or invalid" 1>&2
+    echo "File not found" 1>&2
     exit 4
   fi
 
-  openssl aes-128-cbc -salt -in "$_file" -out "$_file".aes
+  openssl $OPENSSL_CIPHER -salt -in "$_file" -out "$_file".aes
 }
 
 cryptr_decrypt() {
 local _file="$1"
   if [[ ! -f "$_file" ]]; then
-    echo "File not found or invalid" 1>&2
+    echo "File not found" 1>&2
     exit 5
   fi
 
-  openssl aes-128-cbc -d -salt -in "$_file" -out "${_file%\.aes}"
+  openssl $OPENSSL_CIPHER -d -salt -in "$_file" -out "${_file%\.aes}"
 }
 
 cryptr_main() {
@@ -89,7 +90,7 @@ cryptr_main() {
       ;;
 
     *)
-      cryptr_help >&2
+      cryptr_help 1>&2
       exit 3
   esac
 }

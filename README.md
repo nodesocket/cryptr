@@ -13,12 +13,12 @@ ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 
 ### encrypt
 
-> encrypt \<file\> - Encryptes file with OpenSSL AES-128 cipher block chaining. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
+> encrypt \<file\> - Encryptes file with OpenSSL AES-256 cipher block chaining. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
 
 ```
 ➜ cryptr encrypt ./secrets-file
-enter aes-128-cbc encryption password:
-Verifying - enter aes-128-cbc encryption password:
+enter aes-256-cbc encryption password:
+Verifying - enter aes-256-cbc encryption password:
 ```
 
 ```
@@ -30,7 +30,7 @@ Verifying - enter aes-128-cbc encryption password:
 
 ### decrypt
 
-> decrypt \<file.aes\> - Decrypt encrypted file using OpenSSL AES-128 cipher block chaining. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
+> decrypt \<file.aes\> - Decrypt encrypted file using OpenSSL AES-256 cipher block chaining. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
 
 ```
 ➜ ls -alh
@@ -39,7 +39,7 @@ Verifying - enter aes-128-cbc encryption password:
 
 ```
 ➜ cryptr decrypt ./secrets-file.aes
-enter aes-128-cbc decryption password:
+enter aes-256-cbc decryption password:
 ```
 
 ```
@@ -69,7 +69,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 1.0.0
+cryptr 2.0.0
 ```
 
 ### default
@@ -78,7 +78,7 @@ cryptr 1.0.0
 
 ```
 ➜ cryptr
-cryptr 1.0.0
+cryptr 2.0.0
 
 Usage: cryptr command <command-specific-options>
 
