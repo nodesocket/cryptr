@@ -69,7 +69,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 2.0.0
+cryptr 2.0.1
 ```
 
 ### default
@@ -78,7 +78,7 @@ cryptr 2.0.0
 
 ```
 ➜ cryptr
-cryptr 2.0.0
+cryptr 2.0.1
 
 Usage: cryptr command <command-specific-options>
 

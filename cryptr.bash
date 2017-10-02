@@ -18,7 +18,7 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="2.0.0"
+readonly VERSION="2.0.1"
 readonly OPENSSL_CIPHER="aes-256-cbc"
 
 cryptr_version() {

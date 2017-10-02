@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## 2.0.1 - *10/2/2017*
+
+- Small optimization, removed unneeded function `cryptr_info()`.
+
 ## 2.0.0 - *10/2/2017*
 
 *BREAKING CHANGE*
