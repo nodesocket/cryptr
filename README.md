@@ -4,46 +4,55 @@
 
 ## Installation
 
-````
+```
 git clone https://github.com/nodesocket/cryptr.git
 ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
-````
+```
 
 ## API/Commands
 
 ### encrypt
 
-> encrypt \<file\> - Encryptes file with OpenSSL AES-128 cipher block chaining. Writes an encrypted file out *(ciphertext)* appending `.aes` extention.
+> encrypt \<file\> - Encryptes file with OpenSSL AES-128 cipher block chaining. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
 
-````
+```
 ➜ cryptr encrypt ./secrets-file
 enter aes-128-cbc encryption password:
 Verifying - enter aes-128-cbc encryption password:
+```
+
+```
 ➜ ll
 -rw-r--r--  1 user  group   1.0G Oct  1 13:33 secrets-file
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
-````
+```
 
 
 ### decrypt
 
-> decrypt \<file.aes\> - Decrypt encrypted file using OpenSSL AES-128 cipher block chaining. Writes a decrypted file out *(plaintext)* removing `.aes` extention.
+> decrypt \<file.aes\> - Decrypt encrypted file using OpenSSL AES-128 cipher block chaining. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
 
-````
+```
 ➜ ll
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
+```
+
+```
 ➜ cryptr decrypt secrets-file.aes
 enter aes-128-cbc decryption password:
+```
+
+```
 ➜ ll
 -rw-r--r--  1 user  group   1.0G Oct  1 13:35 secrets-file
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
-````
+```
 
 ### help
 
 > help - Displays help
 
-````
+```
 ➜ cryptr help
 Usage: cryptr command <command-specific-options>
 
@@ -52,16 +61,16 @@ Usage: cryptr command <command-specific-options>
   help                 Displays help
   version              Displays the current version
 
-````
+```
 
 ### version
 
 > version - Displays the current version
 
-````
+```
 ➜ cryptr version
 cryptr 1.0.0
-````
+```
 
 ### default
 
