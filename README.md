@@ -22,7 +22,7 @@ Verifying - enter aes-128-cbc encryption password:
 ```
 
 ```
-➜ ll
+➜ ls -alh
 -rw-r--r--  1 user  group   1.0G Oct  1 13:33 secrets-file
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
 ```
@@ -33,17 +33,17 @@ Verifying - enter aes-128-cbc encryption password:
 > decrypt \<file.aes\> - Decrypt encrypted file using OpenSSL AES-128 cipher block chaining. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
 
 ```
-➜ ll
+➜ ls -alh
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
 ```
 
 ```
-➜ cryptr decrypt secrets-file.aes
+➜ cryptr decrypt ./secrets-file.aes
 enter aes-128-cbc decryption password:
 ```
 
 ```
-➜ ll
+➜ ls -alh
 -rw-r--r--  1 user  group   1.0G Oct  1 13:35 secrets-file
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
 ```
