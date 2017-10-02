@@ -25,11 +25,6 @@ cryptr_version() {
   echo "cryptr $VERSION"
 }
 
-cryptr_info() {
-  cryptr_version
-  echo
-}
-
 cryptr_help() {
   echo "Usage: cryptr command <command-specific-options>"
   echo
@@ -66,7 +61,8 @@ cryptr_main() {
   local _command="$1"
 
   if [[ -z $_command ]]; then
-    cryptr_info
+    cryptr_version
+    echo
     cryptr_help
     exit 0
   fi
