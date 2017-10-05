@@ -45,7 +45,7 @@ cryptr_encrypt() {
   fi
 
   if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
-    echo "Using environment variable CRYPTR_PASSWORD for the password" 1>&2
+    echo "Using environment variable CRYPTR_PASSWORD for the password"
     openssl $OPENSSL_CIPHER_TYPE -salt -in "$_file" -out "$_file".aes -pass env:CRYPTR_PASSWORD
   else
     openssl $OPENSSL_CIPHER_TYPE -salt -in "$_file" -out "$_file".aes
@@ -60,7 +60,7 @@ local _file="$1"
   fi
 
   if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
-    echo "Using environment variable CRYPTR_PASSWORD for the password" 1>&2
+    echo "Using environment variable CRYPTR_PASSWORD for the password"
     openssl $OPENSSL_CIPHER_TYPE -d -salt -in "$_file" -out "${_file%\.aes}" -pass env:CRYPTR_PASSWORD
   else
     openssl $OPENSSL_CIPHER_TYPE -d -salt -in "$_file" -out "${_file%\.aes}"
