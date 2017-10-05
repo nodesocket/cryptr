@@ -27,6 +27,11 @@ Verifying - enter aes-256-cbc encryption password:
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
 ```
 
+You may optionally define the password to use when encrypting using the `CRYPTR_PASSWORD` environment variable. This enables non-interactive/batch operations.
+
+```
+➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr encrypt ./secrets-file
+```
 
 ### decrypt
 
@@ -46,6 +51,12 @@ enter aes-256-cbc decryption password:
 ➜ ls -alh
 -rw-r--r--  1 user  group   1.0G Oct  1 13:35 secrets-file
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
+```
+
+You may optionally define the password to use when decrypting using the `CRYPTR_PASSWORD` environment variable. This enables non-interactive/batch operations.
+
+```
+➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr decrypt ./secrets-file.aes
 ```
 
 ### help
@@ -69,7 +80,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 2.0.1
+cryptr 2.1.0
 ```
 
 ### default
@@ -78,7 +89,7 @@ cryptr 2.0.1
 
 ```
 ➜ cryptr
-cryptr 2.0.1
+cryptr 2.1.0
 
 Usage: cryptr command <command-specific-options>
 

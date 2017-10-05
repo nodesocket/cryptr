@@ -18,8 +18,8 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="2.0.1"
-readonly OPENSSL_CIPHER="aes-256-cbc"
+readonly VERSION="2.1.0"
+readonly OPENSSL_CIPHER_TYPE="aes-256-cbc"
 
 cryptr_version() {
   echo "cryptr $VERSION"
@@ -44,7 +44,12 @@ cryptr_encrypt() {
     exit 4
   fi
 
-  openssl $OPENSSL_CIPHER -salt -in "$_file" -out "$_file".aes
+  if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
+    echo "Using environment variable CRYPTR_PASSWORD for the password" 1>&2
+    openssl $OPENSSL_CIPHER_TYPE -salt -in "$_file" -out "$_file".aes -pass env:CRYPTR_PASSWORD
+  else
+    openssl $OPENSSL_CIPHER_TYPE -salt -in "$_file" -out "$_file".aes
+  fi
 }
 
 cryptr_decrypt() {
@@ -54,7 +59,12 @@ local _file="$1"
     exit 5
   fi
 
-  openssl $OPENSSL_CIPHER -d -salt -in "$_file" -out "${_file%\.aes}"
+  if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
+    echo "Using environment variable CRYPTR_PASSWORD for the password" 1>&2
+    openssl $OPENSSL_CIPHER_TYPE -d -salt -in "$_file" -out "${_file%\.aes}" -pass env:CRYPTR_PASSWORD
+  else
+    openssl $OPENSSL_CIPHER_TYPE -d -salt -in "$_file" -out "${_file%\.aes}"
+  fi
 }
 
 cryptr_main() {
