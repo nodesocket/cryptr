@@ -100,6 +100,10 @@ Usage: cryptr command <command-specific-options>
 
 ```
 
+### Bash Tab completion
+
+add the `tools/cryptr-bash-completion.bash` to your tab completion file directory
+
 ## Changelog
 
 https://github.com/nodesocket/cryptr/blob/master/CHANGELOG.md
