@@ -9,9 +9,9 @@ git clone https://github.com/nodesocket/cryptr.git
 ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 ```
 
-### Bash Tab completion
+### Bash tab completion
 
-add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
+Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
 
 ## API/Commands
 
