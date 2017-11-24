@@ -1,1 +1,2 @@
 - Justin Keller ([nodesocket](https://github.com/nodesocket))
+- Manuel Wildauer ([int9h](https://github.com/int9h))

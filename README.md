@@ -9,6 +9,10 @@ git clone https://github.com/nodesocket/cryptr.git
 ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 ```
 
+### Bash Tab completion
+
+add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
+
 ## API/Commands
 
 ### encrypt
@@ -99,10 +103,6 @@ Usage: cryptr command <command-specific-options>
   version              Displays the current version
 
 ```
-
-### Bash Tab completion
-
-add the `tools/cryptr-bash-completion.bash` to your tab completion file directory
 
 ## Changelog
 
