@@ -1,6 +1,6 @@
 # cryptr
 
-##### A simple shell utility for encrypting and decrypting files using OpenSSL.
+#### A simple shell utility for encrypting and decrypting files using OpenSSL.
 
 ## Installation
 
