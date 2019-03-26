@@ -2,7 +2,7 @@
 set -eo pipefail; [[ $TRACE ]] && set -x
 
 plaintext=$(mktemp /tmp/cryptr.XXXXXXXX)
-dd if=/dev/urandom bs=4096 count=1 2> /dev/null | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c512 > "$plaintext"
+dd if=/dev/urandom bs=4096 count=256 2> /dev/null | LC_ALL=C tr -dc 'A-Za-z0-9' | head -c262144 > "$plaintext"
 plaintext_sha=($(openssl dgst -sha256 "$plaintext"))
 
 export CRYPTR_PASSWORD

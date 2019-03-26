@@ -20,21 +20,21 @@ Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
 > encrypt \<file\> - Encryptes file with OpenSSL AES-256 cipher block chaining. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
 
 ```
-➜ cryptr encrypt ./secrets-file
+➜ cryptr encrypt ./secret-file
 enter aes-256-cbc encryption password:
 Verifying - enter aes-256-cbc encryption password:
 ```
 
 ```
 ➜ ls -alh
--rw-r--r--  1 user  group   1.0G Oct  1 13:33 secrets-file
--rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
+-rw-r--r--  1 user  group   1.0G Oct  1 13:33 secret-file
+-rw-r--r--  1 user  group   1.0G Oct  1 13:34 secret-file.aes
 ```
 
 You may optionally define the password to use when encrypting using the `CRYPTR_PASSWORD` environment variable. This enables non-interactive/batch operations.
 
 ```
-➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr encrypt ./secrets-file
+➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr encrypt ./secret-file
 ```
 
 ### decrypt
@@ -43,24 +43,24 @@ You may optionally define the password to use when encrypting using the `CRYPTR_
 
 ```
 ➜ ls -alh
--rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
+-rw-r--r--  1 user  group   1.0G Oct  1 13:34 secret-file.aes
 ```
 
 ```
-➜ cryptr decrypt ./secrets-file.aes
+➜ cryptr decrypt ./secret-file.aes
 enter aes-256-cbc decryption password:
 ```
 
 ```
 ➜ ls -alh
--rw-r--r--  1 user  group   1.0G Oct  1 13:35 secrets-file
--rw-r--r--  1 user  group   1.0G Oct  1 13:34 secrets-file.aes
+-rw-r--r--  1 user  group   1.0G Oct  1 13:35 secret-file
+-rw-r--r--  1 user  group   1.0G Oct  1 13:34 secret-file.aes
 ```
 
 You may optionally define the password to use when decrypting using the `CRYPTR_PASSWORD` environment variable. This enables non-interactive/batch operations.
 
 ```
-➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr decrypt ./secrets-file.aes
+➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr decrypt ./secret-file.aes
 ```
 
 ### help
@@ -84,7 +84,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 2.1.0
+cryptr 2.1.1
 ```
 
 ### default
@@ -93,7 +93,7 @@ cryptr 2.1.0
 
 ```
 ➜ cryptr
-cryptr 2.1.0
+cryptr 2.1.1
 
 Usage: cryptr command <command-specific-options>
 
@@ -130,7 +130,7 @@ For more information on semantic versioning, visit http://semver.org/.
 
 ## License & Legal
 
-Copyright 2017 Justin Keller
+Copyright 2019 Justin Keller
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+## 2.1.1 - *3/25/2019*
+
+- Updated the notice text when using environment variable CRYPTR_PASSWORD for the password.
+- Updated `tests/test.bash`.
+- Bump copyright year to 2019.
+
 ## 2.1.0 - *10/4/2017*
 
 - You may now define the password to use when encrypting and decrypting using the `CRYPTR_PASSWORD` environment variable. This change enables non-interactive/batch operations.
