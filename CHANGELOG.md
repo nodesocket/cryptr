@@ -1,9 +1,10 @@
 CHANGELOG
 =========
 
-## 2.1.2 - *7/10/2020*
+## 2.2.0 - *7/10/2020*
 
-- Append `.aes` file extension instead of substituting when encrypting
+- Append `.aes` file extension instead of substituting when encrypting.
+- Use derivation function _(-pbkdf2)_ when encrypting. See [pull request](https://github.com/nodesocket/cryptr/pull/3).
 
 ## 2.1.1 - *3/25/2019*
 
