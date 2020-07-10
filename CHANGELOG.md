@@ -1,7 +1,7 @@
 CHANGELOG
 =========
 
-## Unreleased
+## 2.1.2 - *7/10/2020*
 
 - Append `.aes` file extension instead of substituting when encrypting
 
