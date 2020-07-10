@@ -18,7 +18,7 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="2.1.1"
+readonly VERSION="2.1.2"
 readonly OPENSSL_CIPHER_TYPE="aes-256-cbc"
 
 cryptr_version() {
@@ -46,9 +46,9 @@ cryptr_encrypt() {
 
   if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
     echo "[notice] using environment variable CRYPTR_PASSWORD for the password"
-    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file%\.aes}" -pass env:CRYPTR_PASSWORD
+    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes" -pass env:CRYPTR_PASSWORD
   else
-    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file%\.aes}"
+    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes"
   fi
 }
 

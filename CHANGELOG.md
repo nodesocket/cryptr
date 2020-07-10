@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## 2.1.2 - *7/10/2020*
+
+- Append `.aes` file extension instead of substituting when encrypting
+
 ## 2.1.1 - *3/25/2019*
 
 - Updated the notice text when using environment variable `CRYPTR_PASSWORD` for the password.
