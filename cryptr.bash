@@ -50,6 +50,19 @@ cryptr_encrypt() {
   else
     openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes"
   fi
+
+  if [[ $? -eq 0 ]]; then
+    read -p "Do you want to delete the original file? (y/N): " confirm
+    if [[ "$confirm" =~ ^[Yy]$ ]]; then
+      echo "[notice] Deleting the original file"
+      rm -f "$_file"
+    else
+      echo "[notice] Original file not deleted"
+    fi
+  else
+    echo "[error] Encryption failed, original file not deleted" 1>&2
+    exit 6
+  fi
 }
 
 cryptr_decrypt() {
