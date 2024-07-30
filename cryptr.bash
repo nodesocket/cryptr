@@ -56,8 +56,6 @@ cryptr_encrypt() {
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
       echo "[notice] deleting the original file"
       rm -f "$_file"
-    else
-      echo "[notice] Original file not deleted"
     fi
   else
     echo "[error] encryption failed, original file not deleted" 1>&2
