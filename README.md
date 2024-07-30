@@ -84,7 +84,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 2.2.0
+cryptr 2.3.0
 ```
 
 ### default
@@ -93,7 +93,7 @@ cryptr 2.2.0
 
 ```
 ➜ cryptr
-cryptr 2.2.0
+cryptr 2.3.0
 
 Usage: cryptr command <command-specific-options>
 
@@ -130,7 +130,7 @@ For more information on semantic versioning, visit http://semver.org/.
 
 ## License & Legal
 
-Copyright 2019 Justin Keller
+Copyright 2024 Justin Keller
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

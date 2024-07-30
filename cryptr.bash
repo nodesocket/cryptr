@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ###############################################################################
-# Copyright 2019 Justin Keller
+# Copyright 2024 Justin Keller
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +18,7 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="2.2.0"
+readonly VERSION="2.3.0"
 readonly OPENSSL_CIPHER_TYPE="aes-256-cbc"
 
 cryptr_version() {
@@ -52,7 +52,7 @@ cryptr_encrypt() {
   fi
 
   if [[ $? -eq 0 ]]; then
-    read -p "Do you want to delete the original file? (y/N): " confirm
+    read -rp "do you want to delete the original file? (y/N): " confirm
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
       echo "[notice] deleting the original file"
       rm -f "$_file"

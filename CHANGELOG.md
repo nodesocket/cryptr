@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## 2.3.0 - *7/30/2024*
+
+- Prompt to confirm deleting original file when invoking encrypt.
+
 ## 2.2.0 - *7/10/2020*
 
 - Append `.aes` file extension instead of substituting when encrypting.
