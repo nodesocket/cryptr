@@ -60,7 +60,7 @@ cryptr_encrypt() {
       echo "[notice] Original file not deleted"
     fi
   else
-    echo "[error] Encryption failed, original file not deleted" 1>&2
+    echo "[error] encryption failed, original file not deleted" 1>&2
     exit 6
   fi
 }
