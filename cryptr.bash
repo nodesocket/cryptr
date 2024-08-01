@@ -29,8 +29,8 @@ cryptr_help() {
   echo "Usage: cryptr command <command-specific-options>"
   echo
   cat<<EOF | column -c2 -t -s,
-  encrypt <file>, Encrypt file
-  decrypt <file.aes>, Decrypt encrypted file
+  encrypt <file|directory>, Encrypt file or directory
+  decrypt <file.aes|directory.tar.gz.aes>, Decrypt encrypted file or directory
   help, Displays help
   version, Displays the current version
 EOF
@@ -38,33 +38,53 @@ EOF
 }
 
 cryptr_encrypt() {
-  local _file="$1"
-  if [[ ! -f "$_file" ]]; then
-    echo "File not found" 1>&2
+  local _path="$1"
+  local _is_directory=0
+  if [[ ! -e "$_path" ]]; then
+    echo "File or directory not found" 1>&2
     exit 4
+  fi
+
+  if [[ -d "$_path" ]]; then
+    tar -czf "${_path}.tar.gz" -C "$(dirname "$_path")" "$(basename "$_path")"
+    _path="${_path}.tar.gz"
+    _is_directory=1
   fi
 
   if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
     echo "[notice] using environment variable CRYPTR_PASSWORD for the password"
-    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes" -pass env:CRYPTR_PASSWORD
+    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_path" -out "${_path}.aes" -pass env:CRYPTR_PASSWORD
   else
-    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes"
+    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_path" -out "${_path}.aes"
   fi
 
   if [[ $? -eq 0 ]]; then
-    read -rp "do you want to delete the original file? (y/N): " confirm
-    if [[ "$confirm" =~ ^[Yy]$ ]]; then
-      echo "[notice] deleting the original file"
-      rm -f "$_file"
+    if [[ $_is_directory -eq 1 ]]; then
+      rm -f "$_path"
+    fi
+
+    if [[ $_is_directory -eq 1 ]]; then
+      read -p "do you want to delete the original directory? (y/N): " confirm
+      if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        echo "[notice] deleting the original directory"
+        rm -rf "${_path%.tar.gz}"
+      fi
+    else
+
+      read -p "do you want to delete the original file? (y/N): " confirm
+      if [[ "$confirm" =~ ^[Yy]$ ]]; then
+        echo "[notice] deleting the original file"
+        rm -f "$_path"
+      fi
     fi
   else
-    echo "[error] encryption failed, original file not deleted" 1>&2
+    echo "[error] encryption failed, original file/directory not deleted" 1>&2
     exit 6
   fi
 }
 
 cryptr_decrypt() {
-local _file="$1"
+  local _file="$1"
   if [[ ! -f "$_file" ]]; then
     echo "File not found" 1>&2
     exit 5
@@ -75,6 +95,20 @@ local _file="$1"
     openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" -out "${_file%\.aes}" -pass env:CRYPTR_PASSWORD
   else
     openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" -out "${_file%\.aes}"
+  fi
+
+  if [[ "${_file%\.aes}" == *.tar.gz ]]; then
+    read -p "Do you want to extract the decrypted archive? (y/N): " extract_confirm
+    if [[ "$extract_confirm" =~ ^[Yy]$ ]]; then
+      tar -xzf "${_file%\.aes}" -C "$(dirname "${_file%\.aes}")"
+      echo "[notice] archive extracted"
+
+      read -p "Do you want to delete the decrypted tar.gz file? (y/N): " delete_confirm
+      if [[ "$delete_confirm" =~ ^[Yy]$ ]]; then
+        rm -f "${_file%\.aes}"
+        echo "[notice] decrypted tar.gz file deleted"
+      fi
+    fi
   fi
 }
 
