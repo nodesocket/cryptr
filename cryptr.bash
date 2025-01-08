@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
 ###############################################################################
-# Copyright 2024 Justin Keller
+# Copyright 2025 Guillaume Archambault
+# Based on cryptr by Justin Keller
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -18,7 +19,7 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="2.3.0"
+readonly VERSION="3.0.0"
 readonly OPENSSL_CIPHER_TYPE="aes-256-cbc"
 
 cryptr_version() {
@@ -70,7 +71,6 @@ cryptr_encrypt() {
         rm -rf "${_path%.tar.gz}"
       fi
     else
-
       read -p "do you want to delete the original file? (y/N): " confirm
       if [[ "$confirm" =~ ^[Yy]$ ]]; then
         echo "[notice] deleting the original file"
