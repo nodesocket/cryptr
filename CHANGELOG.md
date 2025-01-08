@@ -1,6 +1,16 @@
 CHANGELOG
 =========
 
+## 3.0.0 - *1/8/2025*
+
+- Fork from cryptr to create cryptr+
+- Added support for directory encryption/decryption using tar.gz
+- Updated all documentation and tests
+- Improved shell completion support:
+  - Added zsh completion script
+  - Updated bash completion script
+  - Enhanced README.md with detailed completion setup instructions for both shells
+
 ## 2.3.0 - *7/30/2024*
 
 - Prompt to confirm deleting original file when invoking encrypt.
