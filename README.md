@@ -13,7 +13,7 @@ ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 
 Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
 
-## API/Commands
+## Commands
 
 ### encrypt
 
@@ -67,7 +67,7 @@ You may optionally define the password to use when decrypting using the `CRYPTR_
 To print the plaintext to `stdout` instead of writing the file to disk pass the `--stdout` flag as the **final** argument to the decrypt command:
 
 ```
-➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr decrypt ./secret-file.aes --stdout
+➜ cryptr decrypt ./secret-file.aes --stdout
 ```
 
 ### help
