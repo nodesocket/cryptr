@@ -18,7 +18,7 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="2.3.0"
+readonly VERSION="2.4.0"
 readonly OPENSSL_CIPHER_TYPE="aes-256-cbc"
 
 cryptr_version() {
@@ -30,7 +30,7 @@ cryptr_help() {
   echo
   cat<<EOF | column -c2 -t -s,
   encrypt <file>, Encrypt file
-  decrypt <file.aes>, Decrypt encrypted file
+  decrypt <file.aes> [--stdout], Decrypt encrypted file
   help, Displays help
   version, Displays the current version
 EOF
@@ -44,7 +44,7 @@ cryptr_encrypt() {
     exit 4
   fi
 
-  if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
+  if [[ -n "${CRYPTR_PASSWORD}" ]]; then
     echo "[notice] using environment variable CRYPTR_PASSWORD for the password"
     openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes" -pass env:CRYPTR_PASSWORD
   else
@@ -64,17 +64,24 @@ cryptr_encrypt() {
 }
 
 cryptr_decrypt() {
-local _file="$1"
+  local _file="$1"
+  local _stdout="$2"
+
   if [[ ! -f "$_file" ]]; then
     echo "File not found" 1>&2
     exit 5
   fi
 
-  if [[ ! -z "${CRYPTR_PASSWORD}" ]]; then
+  local _out_args=()
+  if [[ "$_stdout" != "--stdout" ]]; then
+    _out_args=(-out "${_file%\.aes}")
+  fi
+
+  if [[ -n "${CRYPTR_PASSWORD}" ]]; then
     echo "[notice] using environment variable CRYPTR_PASSWORD for the password"
-    openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" -out "${_file%\.aes}" -pass env:CRYPTR_PASSWORD
+    openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" "${_out_args[@]}" -pass env:CRYPTR_PASSWORD
   else
-    openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" -out "${_file%\.aes}"
+    openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" "${_out_args[@]}"
   fi
 }
 

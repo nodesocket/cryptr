@@ -23,6 +23,7 @@ Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
 ➜ cryptr encrypt ./secret-file
 enter aes-256-cbc encryption password:
 Verifying - enter aes-256-cbc encryption password:
+do you want to delete the original file? (y/N): N
 ```
 
 ```
@@ -63,6 +64,12 @@ You may optionally define the password to use when decrypting using the `CRYPTR_
 ➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr decrypt ./secret-file.aes
 ```
 
+To print the plaintext to `stdout` instead of writing the file to disk pass the `--stdout` flag as the **final** argument to the decrypt command:
+
+```
+➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr decrypt ./secret-file.aes --stdout
+```
+
 ### help
 
 > help - Displays help
@@ -71,10 +78,10 @@ You may optionally define the password to use when decrypting using the `CRYPTR_
 ➜ cryptr help
 Usage: cryptr command <command-specific-options>
 
-  encrypt <file>       Encrypt file
-  decrypt <file.aes>   Decrypt encrypted file
-  help                 Displays help
-  version              Displays the current version
+  encrypt <file>                  Encrypt file
+  decrypt <file.aes> [--stdout]   Decrypt encrypted file
+  help                            Displays help
+  version                         Displays the current version
 
 ```
 
@@ -84,7 +91,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 2.3.0
+cryptr 2.4.0
 ```
 
 ### default
@@ -93,14 +100,14 @@ cryptr 2.3.0
 
 ```
 ➜ cryptr
-cryptr 2.3.0
+cryptr 2.4.0
 
 Usage: cryptr command <command-specific-options>
 
-  encrypt <file>       Encrypt file
-  decrypt <file.aes>   Decrypt encrypted file
-  help                 Displays help
-  version              Displays the current version
+  encrypt <file>                  Encrypt file
+  decrypt <file.aes> [--stdout]   Decrypt encrypted file
+  help                            Displays help
+  version                         Displays the current version
 
 ```
 
@@ -130,7 +137,7 @@ For more information on semantic versioning, visit http://semver.org/.
 
 ## License & Legal
 
-Copyright 2024 Justin Keller
+Copyright 2025 Justin Keller
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.

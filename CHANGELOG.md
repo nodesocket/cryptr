@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+## 2.4.0 - *7/3/2025*
+
+- Support for printing plaintext to `stdout` when decrypting file via flag `--stdout`.
+- Bump copyright year to 2025.
+
 ## 2.3.0 - *7/30/2024*
 
 - Prompt to confirm deleting original file when invoking encrypt.
