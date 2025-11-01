@@ -9,6 +9,10 @@ git clone https://github.com/nodesocket/cryptr.git
 ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 ```
 
+## Requirements
+
+- [shred](https://linux.die.net/man/1/shred) if optionally deleting original file.
+
 ### Bash tab completion
 
 Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
@@ -23,7 +27,7 @@ Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
 ➜ cryptr encrypt ./secret-file
 enter aes-256-cbc encryption password:
 Verifying - enter aes-256-cbc encryption password:
-do you want to delete the original file? (y/N): N
+do you want to shred the original file? (y/N): N
 ```
 
 ```
@@ -91,7 +95,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 2.4.0
+cryptr 3.0.0
 ```
 
 ### default
@@ -100,7 +104,7 @@ cryptr 2.4.0
 
 ```
 ➜ cryptr
-cryptr 2.4.0
+cryptr 3.0.0
 
 Usage: cryptr command <command-specific-options>
 

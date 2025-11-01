@@ -1,6 +1,10 @@
 CHANGELOG
 =========
 
+## 3.0.0 - *10/31/2025*
+
+- Use `shread` instead of `rm -f` when optionally deleting original file. Requires that the [shred](https://linux.die.net/man/1/shred) command is installed.
+
 ## 2.4.0 - *7/3/2025*
 
 - Support for printing plaintext to `stdout` when decrypting file via flag `--stdout`.
