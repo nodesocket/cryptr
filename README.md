@@ -36,7 +36,7 @@ do you want to shred the original file? (y/N): N
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secret-file.aes
 ```
 
-You may optionally define the password to use when encrypting using the `CRYPTR_PASSWORD` environment variable. This enables non-interactive/batch operations.
+You may optionally define the password to use when encrypting using the `CRYPTR_PASSWORD` environment variable _(be aware of shell history storing passowrds)_. This enables non-interactive/batch operations.
 
 ```
 ➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr encrypt ./secret-file
