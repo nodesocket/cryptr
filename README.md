@@ -141,7 +141,7 @@ For more information on semantic versioning, visit http://semver.org/.
 
 ## License & Legal
 
-Copyright 2025 Justin Keller
+Copyright 2026 Justin Keller
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
