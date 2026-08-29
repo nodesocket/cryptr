@@ -14,10 +14,6 @@ ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 - [scrypt](https://www.tarsnap.com/scrypt.html)
 - [shred](https://linux.die.net/man/1/shred) if optionally deleting original file.
 
-### Bash tab completion
-
-Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
-
 ## Commands
 
 ### encrypt

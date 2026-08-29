@@ -3,7 +3,7 @@ CHANGELOG
 
 ## 4.0.0 (BREAKING) - *8/29/2026*
 
-- Migrated away from `openssl` to using native `scrypt` which uses AES-256-CTR for encryption, with HMAC-SHA256 authentication.
+- Migrated from `openssl` to using native `scrypt` which uses AES-256-CTR for encryption, with HMAC-SHA256 authentication.
 
 ## 3.0.0 - *10/31/2025*
 
