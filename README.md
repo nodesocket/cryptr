@@ -1,6 +1,6 @@
 # cryptr
 
-#### A simple shell utility for encrypting and decrypting files using OpenSSL.
+#### A simple shell utility for encrypting and decrypting files using [scrypt](https://www.tarsnap.com/scrypt.html).
 
 ## Installation
 
@@ -11,6 +11,7 @@ ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 
 ## Requirements
 
+- [scrypt](https://www.tarsnap.com/scrypt.html)
 - [shred](https://linux.die.net/man/1/shred) if optionally deleting original file.
 
 ### Bash tab completion
@@ -21,13 +22,13 @@ Add `tools/cryptr-bash-completion.bash` to your tab completion file directory.
 
 ### encrypt
 
-> encrypt \<file\> - Encryptes file with OpenSSL AES-256 cipher block chaining. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
+> encrypt \<file\> - Encryptes file with scrypt AES-256-CTR. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
 
 ```
 ➜ cryptr encrypt ./secret-file
-enter aes-256-cbc encryption password:
-Verifying - enter aes-256-cbc encryption password:
-do you want to shred the original file? (y/N): N
+Please enter passphrase:
+Please confirm passphrase:
+do you wish to shred the original file? (y/N): N
 ```
 
 ```
@@ -36,7 +37,7 @@ do you want to shred the original file? (y/N): N
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secret-file.aes
 ```
 
-You may optionally define the password to use when encrypting using the `CRYPTR_PASSWORD` environment variable _(be aware of shell history storing passwords)_. This enables non-interactive/batch operations.
+You may optionally define the passphrase to use when encrypting using the `CRYPTR_PASSWORD` environment variable _(be aware of shell history storing passphrase)_. This enables non-interactive/batch operations.
 
 ```
 ➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr encrypt ./secret-file
@@ -44,7 +45,7 @@ You may optionally define the password to use when encrypting using the `CRYPTR_
 
 ### decrypt
 
-> decrypt \<file.aes\> - Decrypt encrypted file using OpenSSL AES-256 cipher block chaining. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
+> decrypt \<file.aes\> - Decrypt encrypted file usin scrypt AES-256-CTR. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
 
 ```
 ➜ ls -alh
@@ -53,7 +54,7 @@ You may optionally define the password to use when encrypting using the `CRYPTR_
 
 ```
 ➜ cryptr decrypt ./secret-file.aes
-enter aes-256-cbc decryption password:
+Please enter passphrase:
 ```
 
 ```
@@ -62,7 +63,7 @@ enter aes-256-cbc decryption password:
 -rw-r--r--  1 user  group   1.0G Oct  1 13:34 secret-file.aes
 ```
 
-You may optionally define the password to use when decrypting using the `CRYPTR_PASSWORD` environment variable _(be aware of shell history storing passwords)_. This enables non-interactive/batch operations.
+You may optionally define the passphrase to use when decrypting using the `CRYPTR_PASSWORD` environment variable _(be aware of shell history storing passphrase)_. This enables non-interactive/batch operations.
 
 ```
 ➜ CRYPTR_PASSWORD=A1EO7S9SsQYcPChOr47n cryptr decrypt ./secret-file.aes
@@ -95,7 +96,7 @@ Usage: cryptr command <command-specific-options>
 
 ```
 ➜ cryptr version
-cryptr 3.0.0
+cryptr 4.0.0
 ```
 
 ### default
@@ -104,7 +105,7 @@ cryptr 3.0.0
 
 ```
 ➜ cryptr
-cryptr 3.0.0
+cryptr 4.0.0
 
 Usage: cryptr command <command-specific-options>
 

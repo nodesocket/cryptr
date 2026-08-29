@@ -18,8 +18,7 @@
 
 set -eo pipefail; [[ $TRACE ]] && set -x
 
-readonly VERSION="3.0.0"
-readonly OPENSSL_CIPHER_TYPE="aes-256-cbc"
+readonly VERSION="4.0.0"
 
 cryptr_version() {
   echo "cryptr $VERSION"
@@ -45,14 +44,14 @@ cryptr_encrypt() {
   fi
 
   if [[ -n "${CRYPTR_PASSWORD}" ]]; then
-    echo "[notice] using environment variable CRYPTR_PASSWORD for the password"
-    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes" -pass env:CRYPTR_PASSWORD
+    echo "[notice] using environment variable CRYPTR_PASSWORD for the passphrase"
+    scrypt enc --passphrase env:CRYPTR_PASSWORD "$_file" "${_file}.aes"
   else
-    openssl $OPENSSL_CIPHER_TYPE -salt -pbkdf2 -in "$_file" -out "${_file}.aes"
+    scrypt enc "$_file" "${_file}.aes"
   fi
 
   if [[ $? -eq 0 ]]; then
-    read -rp "do you want to shred the original file? (y/N): " confirm
+    read -rp "do you wish to shred the original file? (y/N): " confirm
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
       echo "[notice] shredding the original file"
       shred -u -z -n 3 "$_file"
@@ -74,14 +73,14 @@ cryptr_decrypt() {
 
   local _out_args=()
   if [[ "$_stdout" != "--stdout" ]]; then
-    _out_args=(-out "${_file%\.aes}")
+    _out_args=("${_file%\.aes}")
   fi
 
   if [[ -n "${CRYPTR_PASSWORD}" ]]; then
-    echo "[notice] using environment variable CRYPTR_PASSWORD for the password"
-    openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" "${_out_args[@]}" -pass env:CRYPTR_PASSWORD
+    echo "[notice] using environment variable CRYPTR_PASSWORD for the passphrase"
+    scrypt dec --passphrase env:CRYPTR_PASSWORD "$_file" "${_out_args[@]}"
   else
-    openssl $OPENSSL_CIPHER_TYPE -d -salt -pbkdf2 -in "$_file" "${_out_args[@]}"
+    scrypt dec "$_file" "${_out_args[@]}"
   fi
 }
 
