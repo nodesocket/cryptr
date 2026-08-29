@@ -18,7 +18,7 @@ ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 
 ### encrypt
 
-> encrypt \<file\> - Encryptes file with scrypt AES-256-CTR with HMAC-SHA256 authentication. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
+> encrypt \<file\> - Encryptes file using scrypt AES-256-CTR with HMAC-SHA256 authentication. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
 
 ```
 ➜ cryptr encrypt ./secret-file
