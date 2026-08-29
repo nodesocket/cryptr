@@ -18,7 +18,7 @@ ln -s "$PWD"/cryptr/cryptr.bash /usr/local/bin/cryptr
 
 ### encrypt
 
-> encrypt \<file\> - Encryptes file with scrypt AES-256-CTR. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
+> encrypt \<file\> - Encryptes file with scrypt AES-256-CTR with HMAC-SHA256 authentication. Writes an encrypted file out *(ciphertext)* appending `.aes` extension.
 
 ```
 ➜ cryptr encrypt ./secret-file
@@ -41,7 +41,7 @@ You may optionally define the passphrase to use when encrypting using the `CRYPT
 
 ### decrypt
 
-> decrypt \<file.aes\> - Decrypt encrypted file usin scrypt AES-256-CTR. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
+> decrypt \<file.aes\> - Decrypt encrypted file using scrypt AES-256-CTR with HMAC-SHA256 authentication. Writes a decrypted file out *(plaintext)* removing `.aes` extension.
 
 ```
 ➜ ls -alh

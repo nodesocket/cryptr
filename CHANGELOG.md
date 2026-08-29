@@ -1,9 +1,9 @@
 CHANGELOG
 =========
 
-## 4.0.0 (BREAKING) - *8/29/2026*
+## 4.0.0 (:warning BREAKING :warning) - *8/29/2026*
 
-- Migrated from `openssl` to using native `scrypt` which uses AES-256-CTR for encryption, with HMAC-SHA256 authentication.
+- Migrated from `openssl` to using native `scrypt` which uses AES-256-CTR for encryption with HMAC-SHA256 authentication. Most certainly is not backward compatible with encrypted files using the previous versions of `openssl aes-256-cbc`.
 
 ## 3.0.0 - *10/31/2025*
 
