@@ -54,7 +54,7 @@ cryptr_encrypt() {
     read -rp "do you wish to shred the original file? (y/N): " confirm
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
       echo "[notice] shredding the original file"
-      shred -u -z -n 3 "$_file"
+      shred -u -n 1 "$_file"
     fi
   else
     echo "[error] encryption failed, original file not deleted" 1>&2
